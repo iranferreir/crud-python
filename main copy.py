@@ -40,15 +40,15 @@ inserir_nome = input("Digite seu nome: ")
 inserir_email = input("Digite seu e-mail: ")
 inserir_senha = input("digite seu senha: ")
 
-usuario = Usuario(nome="Maria", email="maria@gamil.com", senha="456")
+usuario = Usuario(nome="Maria", email="maria@gmail.com", senha="456")
 session.add(usuario)
 session.commit()
 
 # Listando todos os usuarios do banco de dados.
+# Read
 print("|nExibindo todos os usuario do banco de dados.")
 lista_usuario = session.query(Usuario).all()
 
-# Read
 for usuario in lista_usuario:
     print(f"{usuario.id} - {usuario.nome} - {usuario.email} - {usuario.senha}")
 
@@ -62,27 +62,32 @@ session.commit()
 print(f"{usuario.nome} excluido com sucesso.")
 
 # Listando todos os usuarios do banco de dados.
+# Read
 print("|nExibindo todos os usuario do banco de dados.")
 lista_usuario = session.query(Usuario).all()
 
-# Read
 for usuario in lista_usuario:
     print(f"{usuario.id} - {usuario.nome} - {usuario.email} - {usuario.senha}")
 
 #Update
 print("\nAtualizando dados do usuario.")
+email_usuario = input("informe o email do usuario que será atualizado:")
+
 usuario = session.query(Usuario).filter_by(email = email_usuario).first()
 
-novos_dados = usuario(
-    nome = input("Digite seu nome: ")
-    email = input("Digite seu email: ")
-    senha = input("Digite seu senha: ")
-)
+nome = input("Digite seu nome: ")
+email = input("Digite seu email: ")
+senha = input("Digite seu senha: ")
 
-usuario = novos_dados
-session.add(usuario)
 session.commit()
 
+# Listando todos os usuarios do banco de dados.
+# Read
+print("|nExibindo todos os usuario do banco de dados.")
+lista_usuario = session.query(Usuario).all()
+
+for usuario in lista_usuario:
+    print(f"{usuario.id} - {usuario.nome} - {usuario.email} - {usuario.senha}")
 
 # Fechando conexão.    
 session.close()
